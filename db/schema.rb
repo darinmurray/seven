@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_13_160604) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_13_222151) do
   create_table "account_login_change_keys", force: :cascade do |t|
     t.string "key", null: false
     t.string "login", null: false
@@ -42,6 +42,41 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_13_160604) do
     t.string "email", null: false
     t.integer "status", default: 1, null: false
     t.index ["email"], name: "index_accounts_on_email", unique: true, where: "status IN (1, 2)"
+  end
+
+  create_table "expense_categories", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name", null: false
+    t.text "description"
+    t.boolean "active", default: true, null: false
+    t.boolean "universal"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_expense_categories_on_user_id"
+  end
+
+  create_table "expenses", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "expense_category_id", null: false
+    t.string "expense_type"
+    t.string "name", null: false
+    t.decimal "amount", precision: 9, scale: 2
+    t.integer "interval", default: 4, null: false
+    t.decimal "min_payment", precision: 9, scale: 2
+    t.decimal "generated_payment", precision: 9, scale: 2
+    t.decimal "balance_at_entry", precision: 9, scale: 2
+    t.date "due_date"
+    t.float "interest_rate"
+    t.float "min_pmnt_calc_percent"
+    t.decimal "avg_monthly_cost", precision: 9, scale: 2
+    t.integer "mortgage_id", null: false
+    t.integer "heloc_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["expense_category_id"], name: "index_expenses_on_expense_category_id"
+    t.index ["heloc_id"], name: "index_expenses_on_heloc_id"
+    t.index ["mortgage_id"], name: "index_expenses_on_mortgage_id"
+    t.index ["user_id"], name: "index_expenses_on_user_id"
   end
 
   create_table "incomes", force: :cascade do |t|
@@ -78,6 +113,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_13_160604) do
   add_foreign_key "account_password_reset_keys", "accounts", column: "id"
   add_foreign_key "account_remember_keys", "accounts", column: "id"
   add_foreign_key "account_verification_keys", "accounts", column: "id"
+  add_foreign_key "expense_categories", "users"
+  add_foreign_key "expenses", "expense_categories"
+  add_foreign_key "expenses", "helocs"
+  add_foreign_key "expenses", "mortgages"
+  add_foreign_key "expenses", "users"
   add_foreign_key "incomes", "users"
   add_foreign_key "users", "accounts"
 end

@@ -1,0 +1,35 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  expense_category: one
+  expense_type: MyString
+  name: MyString
+  amount: 9.99
+  interval: 1
+  min_payment: 9.99
+  generated_payment: 9.99
+  balance_at_entry: 9.99
+  due_date: 1
+  interest_rate: 1.5
+  min_pmnt_calc_percent: 1.5
+  avg_monthly_cost: 9.99
+  mortgage: one
+  heloc: one
+
+two:
+  user: two
+  expense_category: two
+  expense_type: MyString
+  name: MyString
+  amount: 9.99
+  interval: 1
+  min_payment: 9.99
+  generated_payment: 9.99
+  balance_at_entry: 9.99
+  due_date: 1
+  interest_rate: 1.5
+  min_pmnt_calc_percent: 1.5
+  avg_monthly_cost: 9.99
+  mortgage: two
+  heloc: two
