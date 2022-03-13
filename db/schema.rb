@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_13_145444) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_13_160604) do
   create_table "account_login_change_keys", force: :cascade do |t|
     t.string "key", null: false
     t.string "login", null: false
@@ -44,6 +44,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_13_145444) do
     t.index ["email"], name: "index_accounts_on_email", unique: true, where: "status IN (1, 2)"
   end
 
+  create_table "incomes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name", null: false
+    t.float "avg_monthly_income", default: 1000.0, null: false
+    t.integer "interval", default: 2, null: false
+    t.decimal "amount", precision: 9, scale: 2, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_incomes_on_user_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "color"
@@ -67,5 +78,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_13_145444) do
   add_foreign_key "account_password_reset_keys", "accounts", column: "id"
   add_foreign_key "account_remember_keys", "accounts", column: "id"
   add_foreign_key "account_verification_keys", "accounts", column: "id"
+  add_foreign_key "incomes", "users"
   add_foreign_key "users", "accounts"
 end

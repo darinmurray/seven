@@ -1,15 +1,16 @@
 <p style="color: green"><%= notice %></p>
 
-<h1><%= @products.length %> Products in SEVEN</h1>
-<h1>Pages#home</h1>
-
-
-      <%= link_to "User Page", current_account.user %>
-
-
-
-<button class="btn btn-success">Green Button!</button>
+<h2><%= @products.length %> Products in SEVEN</h2>
 <p>Find me in app/views/pages/home.html.erb</p>
+
+
+   
+<% if rodauth.logged_in? %>
+     <%= link_to "User Page", current_account.user %>
+<% else %>
+No on is logged in
+<% end %>
+
 <button type="button" 
         class="btn btn-lg btn-danger" 
         data-bs-toggle="popover" 
@@ -24,8 +25,8 @@
     <%= render product %>
     <p>
       <!--  %= link_to "Show this product", product % -->
-        <%= link_to "Edit", edit_product_path(product) %></li>
-        <%= link_to "Destroy", product_path(product), data: {
+        <%= link_to "Edit(in index)", edit_product_path(product) %></li>
+        <%= link_to "destroy in index", product_path(product), data: {
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
                   } %>

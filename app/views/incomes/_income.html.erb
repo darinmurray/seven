@@ -1,0 +1,34 @@
+<div id="<%= dom_id income %>">
+  <span class="text-black-50 ">
+    (<%= income.user_id %>)  
+  </span>
+
+  <span>
+    <strong><%= income.name %></strong>
+  </span>
+
+  <span>
+    Brings me:
+    <%= income.avg_monthly_income %>/month.
+  </span>
+
+  <!--span>
+    <strong>Interval:</strong>
+    <%= income.interval %>
+  </!--span>
+
+  <span>
+    <strong>Amount:</strong>
+    <%= income.amount %>
+  </span -->
+
+  <%= link_to "Edit", edit_income_path(income), :class => 'ms-2 '  %>
+  <span class="ms-1 me-1 text-black-50 opacity-25 " >| </span>
+  <%= link_to income_path(income), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } do %>
+<i class="bi bi-trash " style="color: gray;"></i> 
+<% end %>
+
+</div>

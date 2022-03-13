@@ -9,6 +9,10 @@ class UsersController < ApplicationController
   # GET /users/1 or /users/1.json
   def show
     @products = Product.all
+    @incomes = @user.incomes # include all incomes for this user
+    # TODO==> this should not be in the controler, calculate and save in the model upon create
+    # then summon from db
+    
   end
 
   # GET /users/new

@@ -4,7 +4,7 @@
 
   <div class="mb-3">
     <%= form.label :first_name, "First Name", class: "form-label" %>
-    <%= form.text_field :first_name, value: params[:first_name], class: "form-control #{"is-invalid" if rodauth.field_error("name")}", aria: ({ invalid: true, describedby: "login_error_message" } if rodauth.field_error("first_name")) %>
+    <%= form.text_field :first_name, value: params[:first_name], class: "form-control #{"is-invalid" if rodauth.field_error("first_name")}", aria: ({ invalid: true, describedby: "login_error_message" } if rodauth.field_error("first_name")) %>
     <%= content_tag(:span, rodauth.field_error("first_name"), class: "invalid-feedback", id: "login_error_message") if rodauth.field_error("first_name") %>
   </div>
 

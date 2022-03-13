@@ -1,10 +1,31 @@
 <p style="color: green"><%= notice %></p>
+<span class="text-black-50"> views>users>show </span>
+
+<% have_income? %> <!-- helper method -->
 
 <%= render @user %>
 
 <div>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= link_to "Back to users", users_path %>
+  <%= link_to "Edit", edit_user_path(@user) %> |
+  <%= link_to "Back", root_path %>
+</div>
 
-  <%= button_to "Destroy this user", @user, method: :delete %>
+
+<!-- this will get moved into a more appropriate partial as we progress -->
+<div class="mt-5 mb-1 " > My Avg Monthly Income<%= @my_income %> </div>
+<div id="incomes" class="mt-1 mb-3 ps-3" >
+  <% @incomes.each do |income| %>
+    <%= render income %>
+  <% end %>
+</div>
+<%= link_to "New income", new_income_path, class: "btn btn-outline-primary" %>
+<!-- this will get moved into a more appropriate partial as we progress -->
+<!-- incomes/index will never be called as they will alway show as a partial -->
+
+
+
+<div id="products" class="mt-5">
+  <% @products.each do |product| %>
+    <%= render product %>
+  <% end %>
 </div>
