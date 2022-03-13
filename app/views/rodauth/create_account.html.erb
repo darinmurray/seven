@@ -1,6 +1,13 @@
 <% content_for :title, rodauth.create_account_page_title %>
 
 <%= form_with url: rodauth.create_account_path, method: :post, data: { turbo: false } do |form| %>
+
+  <div class="mb-3">
+    <%= form.label :first_name, "First Name", class: "form-label" %>
+    <%= form.text_field :first_name, value: params[:first_name], class: "form-control #{"is-invalid" if rodauth.field_error("name")}", aria: ({ invalid: true, describedby: "login_error_message" } if rodauth.field_error("first_name")) %>
+    <%= content_tag(:span, rodauth.field_error("first_name"), class: "invalid-feedback", id: "login_error_message") if rodauth.field_error("first_name") %>
+  </div>
+
   <div class="form-group mb-3">
     <%= form.label "login", rodauth.login_label, class: "form-label" %>
     <%= form.email_field rodauth.login_param, value: params[rodauth.login_param], id: "login", autocomplete: "email", required: true, class: "form-control #{"is-invalid" if rodauth.field_error(rodauth.login_param)}", aria: ({ invalid: true, describedby: "login_error_message" } if rodauth.field_error(rodauth.login_param)) %>

@@ -1,7 +1,13 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Products in SEVEN</h1>
+<h1><%= @products.length %> Products in SEVEN</h1>
 <h1>Pages#home</h1>
+
+
+      <%= link_to "User Page", current_account.user %>
+
+
+
 <button class="btn btn-success">Green Button!</button>
 <p>Find me in app/views/pages/home.html.erb</p>
 <button type="button" 
